@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
-const API_URL = '/api';  // Updated to use the proxy configuration
+const API_URL = '/api';
 
 const AuthContext = createContext();
 
@@ -25,11 +25,9 @@ export const AuthProvider = ({ children }) => {
     try {
       const token = localStorage.getItem('token');
       if (!token) return;
-
       const response = await axios.get(`${API_URL}/auth/me`, {
         headers: { Authorization: `Bearer ${token}` }
       });
-
       setUser(response.data.data);
     } catch (err) {
       localStorage.removeItem('token');
@@ -41,11 +39,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const response = await axios.post(`${API_URL}/auth/login`, {
-        email,
-        password
-      });
-
+      const response = await axios.post(`${API_URL}/auth/login`, {email,password});
       const { token } = response.data;
       localStorage.setItem('token', token);
       await checkAuthStatus();
@@ -58,12 +52,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (username, email, password) => {
     try {
-      const response = await axios.post(`${API_URL}/auth/register`, {
-        username,
-        email,
-        password
-      });
-
+      const response = await axios.post(`${API_URL}/auth/register`, {username,email,password});
       const { token } = response.data;
       localStorage.setItem('token', token);
       await checkAuthStatus();
@@ -74,19 +63,8 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const logout = () => {
-    localStorage.removeItem('token');
-    setUser(null);
-  };
+  const logout = () => {localStorage.removeItem('token');setUser(null);};
 
-  const value = {
-    user,
-    loading,
-    error,
-    login,
-    register,
-    logout
-  };
-
+  const value = {user,loading,error,login,register,logout};
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }; 

@@ -11,55 +11,23 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white shadow-sm">
-      <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center h-16">
-          <Link to="/" className="text-xl font-bold text-primary">
-            Student Management
-          </Link>
+    <nav className="">
+      <div className="">
+        <div className="">
+          <Link to="/" className="">Student Management</Link>
 
-          <div className="flex items-center space-x-4">
+          <div className="">
             {user ? (
               <>
-                <Link
-                  to="/dashboard"
-                  className="text-gray-600 hover:text-primary transition-colors"
-                >
-                  Dashboard
-                </Link>
-                <Link
-                  to="/students"
-                  className="text-gray-600 hover:text-primary transition-colors"
-                >
-                  Students
-                </Link>
-                <Link
-                  to="/classes"
-                  className="text-gray-600 hover:text-primary transition-colors"
-                >
-                  Classes
-                </Link>
-                <button
-                  onClick={handleLogout}
-                  className="btn btn-primary"
-                >
-                  Logout
-                </button>
+                <Link to="/dashboard" className="">Dashboard</Link>
+                <Link to="/students" className="">Students</Link>
+                <Link to="/classes" className="">Classes</Link>
+                <button onClick={handleLogout} className="btn btn-primary">Logout</button>
               </>
             ) : (
               <>
-                <Link
-                  to="/login"
-                  className="text-gray-600 hover:text-primary transition-colors"
-                >
-                  Login
-                </Link>
-                <Link
-                  to="/register"
-                  className="btn btn-primary"
-                >
-                  Register
-                </Link>
+                <Link to="/login" className="">Login</Link>
+                <Link to="/register"className="btn btn-primary">Register</Link>
               </>
             )}
           </div>

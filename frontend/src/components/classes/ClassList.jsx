@@ -46,7 +46,7 @@ const ClassList = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-64">
+      <div className="flex justify-center items-center ">
         <div className="spinner" />
       </div>
     );
@@ -61,7 +61,7 @@ const ClassList = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container ">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold">Classes</h2>
         <button

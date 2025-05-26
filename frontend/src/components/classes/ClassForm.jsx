@@ -65,32 +65,25 @@ const ClassForm = () => {
   });
 
   return (
-    <div className="max-w-2xl mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-6 text-center">
-        {isEditMode ? 'Edit Class' : 'Add Class'}
+    <div className="rounded-lg shadow-md">
+      <h2 className="font-bold text-center">{isEditMode ? 'Edit Class' : 'Add Class'}
       </h2>
       
       {error && (
-        <div className="alert alert-error mb-4">
+        <div className="alert alert-error">
           {error}
         </div>
       )}
 
       <form onSubmit={formik.handleSubmit}>
         <div className="form-group">
-          <label htmlFor="className" className="form-label">
-            Class Name
-          </label>
-          <input
-            id="className"
-            type="text"
-            className={`form-input ${
-              formik.touched.className && formik.errors.className ? 'border-red-500' : ''
-            }`}
+          <label htmlFor="className" className="form-label">Class Name</label>
+          <input id="className" type="text" className={`form-input ${
+              formik.touched.className && formik.errors.className ? 'border-red-500' : ''}`}
             {...formik.getFieldProps('className')}
           />
           {formik.touched.className && formik.errors.className && (
-            <div className="form-error">{formik.errors.className}</div>
+             <div className="form-error">{formik.errors.className}</div>
           )}
         </div>
 
@@ -98,36 +91,26 @@ const ClassForm = () => {
           <label htmlFor="description" className="form-label">
             Description
           </label>
-          <textarea
-            id="description"
+          <textarea id="description"
             className={`form-input ${
               formik.touched.description && formik.errors.description ? 'border-red-500' : ''
             }`}
-            rows="4"
-            {...formik.getFieldProps('description')}
+            rows="4" {...formik.getFieldProps('description')}
           />
           {formik.touched.description && formik.errors.description && (
             <div className="form-error">{formik.errors.description}</div>
           )}
         </div>
 
-        <div className="flex space-x-4 mt-6">
-          <button
-            type="submit"
-            className="btn btn-primary flex-1"
-            disabled={loading}
-          >
+        <div className="flex space">
+          <button type="submit" className="btn btn-primary"disabled={loading}>
             {loading ? (
               <div className="spinner mx-auto" />
             ) : (
               isEditMode ? 'Update Class' : 'Add Class'
             )}
           </button>
-          <button
-            type="button"
-            onClick={() => navigate('/classes')}
-            className="btn btn-secondary flex-1"
-          >
+          <button type="button" onClick={() => navigate('/classes')} className="btn btn-secondary">
             Cancel
           </button>
         </div>
